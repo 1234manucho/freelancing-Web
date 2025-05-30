@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pay Application Fee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            min-height: 100vh;
+        }
+        .card {
+            border-radius: 18px;
+            border: none;
+            max-width: 420px;
+            margin: 40px auto;
+            background: #fff;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+            border: none;
+        }
+        .btn-success {
+            background: linear-gradient(90deg, #28a745 60%, #43e97b 100%);
+            border: none;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.15);
+            border-color: #007bff;
+        }
+        h3, h4 {
+            font-weight: 700;
+        }
+        .success-icon {
+            font-size: 3rem;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function simulatePayment() {
+            const phone = document.getElementById("phone").value;
+            if (!phone) {
+                alert("Please enter your phone number.");
+                return false;
+            }
+            document.getElementById("payment-section").style.display = "none";
+            document.getElementById("success-section").style.display = "block";
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="card shadow">
+            <div class="card-body text-center">
+               <div class="alert alert-info mb-4" role="alert">
+      <strong>Note:</strong> You can alternatively pay the <span class="fw-bold">$10 USD</span> application fee by sending it directly to 
+      <a href="mailto:payhere38@gmail.com" class="text-decoration-underline">payhere38@gmail.com</a>.
+    </div>
+                <div id="payment-section">
+                    <h3 class="mb-3">Pay Application Fee</h3>
+                    <p class="mb-4">You need to pay <strong>${{ amount }}</strong> before submitting your application.</p>
+                    <input type="text" id="phone" class="form-control mb-3" placeholder="Enter your phone number" required>
+                    <button class="btn btn-primary w-100" onclick="simulatePayment()">Pay & Continue</button>
+                </div>
+
+                <div id="success-section" style="display:none;">
+                    <div class="success-icon mb-2">&#10003;</div>
+                    <h4 class="text-success mb-2">Payment Successful!</h4>
+                    <p class="mb-4">You can now submit your application.</p>
+                    <form action="{{ url_for('complete_application_payment') }}" method="POST">
+                        <input type="hidden" name="job_id" value="{{ job_id }}">
+                        <textarea name="cover_letter" class="form-control mb-3" rows="4" placeholder="Write your cover letter..."></textarea>
+                        <button type="submit" class="btn btn-success w-100">Submit Application</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

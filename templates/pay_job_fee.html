@@ -1,0 +1,169 @@
+<!-- templates/pay_job_fee.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pay Job Fee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 28px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 18px;
+            font-size: 1.7em;
+        }
+        p {
+            color: #4a5568;
+            font-size: 1.1em;
+            margin-bottom: 28px;
+        }
+        strong {
+            color: #3182ce;
+            font-size: 1.2em;
+        }
+        form {
+            margin-top: 16px;
+        }
+        button[type="submit"] {
+            background: linear-gradient(90deg, #3182ce 0%, #63b3ed 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 36px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+            box-shadow: 0 2px 8px rgba(49,130,206,0.15);
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #2563eb 0%, #4299e1 100%);
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: #e53e3e;
+            display: none; /* show this dynamically if needed */
+        }
+        /* Base reset and layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Card-style job listings */
+.job-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Mobile responsive layout */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, textarea, select, button {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    form {
+        gap: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pay Job Posting Fee</h1>
+        <p>The job posting fee is: <strong>${{ amount }}</strong></p>
+       <form action="{{ url_for('complete_payment') }}" method="post">
+    <input type="hidden" name="title" value="{{ title }}">
+    <input type="hidden" name="description" value="{{ description }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="amount" value="{{ amount }}">
+    <button type="submit">Pay Now</button>
+</form>
+
+        <div class="message" id="error-message"></div>
+    </div>
+</body>
+</html>

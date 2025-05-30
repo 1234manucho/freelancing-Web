@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post a Job </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a3d62, #2980b9);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-label {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+    }
+
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: none;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      width: 100%;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Post a New Job</h2>
+    <div class="alert alert-info mb-4" role="alert">
+  <strong>Note:</strong> You can alternatively pay the <span class="fw-bold">$10 USD</span> application fee by sending it directly to paypal 
+  <a href="mailto:agritrue13@gmail.com" class="text-decoration-underline">payhere38@gmail.com</a>
+  or via PayPal to 
+  <span class="fw-bold">payhere38@gmail.com</span>.
+</div>
+ <form action="{{ url_for('post_job') }}" method="post">
+    
+
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Budget ($)</label>
+        <input type="number" name="budget" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Deadline</label>
+        <input type="date" name="deadline" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Post Job</button>
+    </form>
+  </div>
+</body>
+</html>
