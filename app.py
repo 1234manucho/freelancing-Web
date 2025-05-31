@@ -97,7 +97,7 @@ def post_job():
             'budget': int(request.form['budget']),
             'deadline': request.form['deadline'],
         }
-        #return redirect(url_for('pay_job_fee'))
+        return redirect(url_for('pay_job_fee'))
     return render_template('post_job.html')
 
 @app.route('/pay_job_fee', methods=['GET'])

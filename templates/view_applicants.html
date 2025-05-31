@@ -6,104 +6,84 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
       min-height: 100vh;
     }
     .applicant-card {
       border-radius: 18px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      background: #e3f2fd;
+      background: #fff;
       transition: transform 0.15s;
-      border: none;
     }
     .applicant-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(33,147,176,0.18);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .card-title {
       font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #1565c0;
+      color: #0d6efd;
+      margin-bottom: 0.5rem;
     }
-    .cover-letter {
-      background: #bbdefb;
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 10px;
-      font-style: italic;
-      color: #0d47a1;
+    .card-text {
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
     .applied-date {
-      font-size: 0.95rem;
-      color: #1976d2;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      font-size: 0.9rem;
+      color: #6c757d;
     }
     .back-btn {
       margin-top: 40px;
     }
-    .header-emoji {
-      font-size: 2.2rem;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
-    .fw-bold.d-inline {
-      color: #0d47a1 !important;
-    }
-    .alert-info {
-      background: #e3f2fd;
-      color: #1565c0;
-      border-color: #90caf9;
-    }
-    .btn-outline-secondary {
-      border-color: #1976d2;
-      color: #1976d2;
-    }
-    .btn-outline-secondary:hover {
-      background: #1976d2;
+    .header-bar {
+      background: #0d6efd;
       color: #fff;
+      border-radius: 0 0 18px 18px;
+      padding: 30px 0 20px 0;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 12px rgba(13,110,253,0.08);
+    }
+    .header-bar h2 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 767px) {
+      .applicant-card {
+        padding: 1.2rem;
+      }
+      .header-bar {
+        padding: 20px 0 12px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container py-5">
-    <div class="text-center mb-5">
-      <span class="header-emoji">👥</span>
-      <h2 class="fw-bold d-inline">Applicants for: <span class="text-primary">{{ job.title }}</span></h2>
+  <div class="container py-4">
+    <div class="header-bar text-center mb-5">
+      <h2>Applicants for: <span class="fw-bold">{{ job.title }}</span></h2>
     </div>
 
     {% if freelancers %}
       <div class="row g-4">
         {% for entry in freelancers %}
-          <div class="col-md-6">
-            <div class="card applicant-card p-4">
-              <h5 class="card-title text-success">
-                📧 {{ entry.freelancer.email }}
-              </h5>
-              <div class="cover-letter">
-                <strong>📝 Cover Letter:</strong><br>{{ entry.application.cover_letter }}
-              </div>
-              <div class="applied-date">
-                ⏰ Applied on {{ entry.application.applied_at.strftime('%Y-%m-%d %H:%M') }}
-              </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card applicant-card p-4 h-100">
+              <h5 class="card-title">{{ entry.freelancer.email }}</h5>
+              <p class="card-text"><strong>Cover Letter:</strong><br>{{ entry.application.cover_letter }}</p>
+              <div class="applied-date">Applied on {{ entry.application.applied_at.strftime('%Y-%m-%d %H:%M') }}</div>
             </div>
           </div>
         {% endfor %}
       </div>
     {% else %}
       <div class="alert alert-info text-center">
-        <span style="font-size:1.5rem;">😔</span><br>
         No applicants have applied for this job yet.
       </div>
     {% endif %}
 
     <div class="text-center back-btn">
-      <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
-        ⬅️ Back to Dashboard
-      </a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary px-4 py-2">Back to Dashboard</a>
     </div>
   </div>
 </body>
