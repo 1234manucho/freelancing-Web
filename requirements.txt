@@ -1,0 +1,33 @@
+# Core Flask and Extensions
+Flask==2.3.2
+Flask-SQLAlchemy==3.1.1
+Flask-Mail==0.9.1
+Flask-WTF==1.1.1  # Useful for form handling and CSRF protection
+Flask-Login==0.6.3  # Helpful for managing user sessions
+Flask-Migrate==4.0.4  # Useful for database migrations
+
+# Security and Utilities
+Werkzeug==2.3.6
+itsdangerous==2.1.2
+python-dotenv==1.0.1  # Load environment variables from .env
+
+# Payments
+paypalrestsdk==1.14.0
+stripe==8.5.0  # Optional: if you ever add Stripe payments
+
+# File Uploads and Handling
+python-magic==0.4.27  # For file type detection
+Pillow==10.3.0  # If you work with images (e.g. thumbnails, previews)
+
+# Email and Validation
+email-validator==2.1.0.post1
+
+# Production Server
+gunicorn==21.2.0
+
+# Database Driver
+pysqlite3-binary==0.5.1  # Ensures SQLite support in environments missing it
+
+# Other Utilities
+requests==2.31.0
+uuid==1.30  # Optional: not strictly required since Python has uuid built-in
